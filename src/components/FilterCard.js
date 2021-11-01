@@ -101,7 +101,7 @@ width,
         { featured && <Box position="absolute" bottom="0px" left="0px">
                       <Typography   sx={{backgroundColor:"white", fontSize:15, padding:2,fontFamily:"Impact"}}> Photo of the day </Typography>
                       </Box>}
-        { featured && <Box position="absolute" top="0px" left="0px">
+        { bestseller && <Box position="absolute" top="0px" left="0px">
                         <Typography   sx={{backgroundColor:"white", fontSize:15, padding:2,fontFamily:"Impact"}}> Bestseller </Typography>
                       </Box>}    
               
