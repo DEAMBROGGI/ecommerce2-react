@@ -25,7 +25,7 @@ import FormLabel from '@mui/material/FormLabel';
     } else {
       all.splice(clickedCategory, 1);
     }
-    console.log(c)
+   
     setChecked(all);
    
     dispatch({

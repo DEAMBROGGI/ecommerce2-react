@@ -85,11 +85,17 @@ width,
       }
     })
   }
-
+  const [displayButton,setDisplayButton] = useState("none");
+  const styleButton = {
+    display:displayButton,
+  };
   return (
 
     
-    <Box sx={{ width:"100%"}} >
+    <Box sx={{ width:"100%"}} 
+    onMouseEnter={() => setDisplayButton("block")}
+    onMouseLeave={() => setDisplayButton("none")}>
+
       <Box display="flex" justifyContent="center" backgroundColor="text.disabled">
      <ImageListItem
       style={{height:"300px"}} >
@@ -110,6 +116,7 @@ width,
      </Box>
       <Box sx={{ display:"static", heigth:"300px" }}>
         <Button
+          style={styleButton}
           variant="contained"  
           onClick={addToBasket}
           sx={{ 

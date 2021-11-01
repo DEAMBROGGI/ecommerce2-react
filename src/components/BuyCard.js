@@ -48,7 +48,7 @@ const removeItem = ()=> dispatch({
 
   return (
 
-   <Card sx={{ maxWidth: 345,  margin:2}}>
+   <Card sx={{ maxWidth: 345,  margin:2, boxShadow: 3 }}>
       
         <Grid xs={12}  display="flex" justifyContent="center" padding={1} borderBottom="3px solid grey">
       
