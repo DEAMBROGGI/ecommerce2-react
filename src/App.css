@@ -1,5 +1,6 @@
-.App {
-  text-align: center;
+.css-dn9i9f-MuiCardMedia-root{
+  object-fit: none !important;
+  width: fit-content !important;
 }
 
 .App-logo {
@@ -11,7 +12,7 @@
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
-}
+} 
 
 .App-header {
   background-color: #282c34;
