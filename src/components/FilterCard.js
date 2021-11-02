@@ -84,6 +84,12 @@ width,
 
       }
     })
+
+    dispatch({
+      type: actionTypes.LOAD_BUYPAGE,
+      verBuyCart:true 
+    })
+
   }
   const [displayButton,setDisplayButton] = useState("none");
   const styleButton = {

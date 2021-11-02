@@ -8,8 +8,7 @@ export const initialState = {
     orderBy:[],
     ratingFilter:5,
     filterProducts:[],
-    loadFilterPage:"/",
-    loadBuyPage:"/",
+    verBuyCart:false
 }
 
 export const actionTypes = {
@@ -23,7 +22,7 @@ export const actionTypes = {
     ORDERBY:"ORDERBY",
     PRICE_FILTER:"PRICE_FILTER",
     FILTER_PRODUCTS:"FILTER_PRODUCTS",
-    LOAD_FILTERPAGE:"LOAD_FILTERPAGE",
+    
     LOAD_BUYPAGE:"LOAD_BUYPAGE"
 }
 
@@ -118,7 +117,7 @@ switch(action.type){
         case "LOAD_BUYPAGE":
             return{
                 ...state,
-                loadBuyPage:action.loadBuyPage,
+                verBuyCart:action.verBuyCart,
                                 }                                                                                    
         default: return state;
 }

@@ -59,6 +59,10 @@ export default function Featured ({product:{
       }
     })
 
+    dispatch({
+      type: actionTypes.LOAD_BUYPAGE,
+      verBuyCart:true 
+    })
   }
  return (
 
