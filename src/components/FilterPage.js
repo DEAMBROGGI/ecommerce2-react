@@ -17,6 +17,7 @@ import Box from '@mui/material/Box';
     const handleChange = (e, p) => { 
       setPage(p);
       _DATA.jump(p);
+    
     };
 
      function FormFilterRow(){
@@ -25,7 +26,7 @@ import Box from '@mui/material/Box';
           <React.Fragment>
               {  _DATA?.currentData().map((item)=>
                     
-                    <Grid item xs={12} sm={6} md={6} lg={4} width="100%" position="relative" >
+                    <Grid item xs={12} sm={6} md={6} lg={4}  width="100%" >
                         <FilterCard  key={item.id} productFiltered={item}/>
                     </Grid> 
                     )}
@@ -36,21 +37,27 @@ import Box from '@mui/material/Box';
     return (
       
   <Stack  width="100%" >
-      <Box sx={{ flexGrow: 1 }}>
-        <Grid container spacing={2} marginTop={1}  >
+      <Box sx={{ flexGrow: 1}}>
+        <Grid container spacing={7} marginTop={1}  >
 
         <FormFilterRow/>          
   
         </Grid>
       </Box>
       
-      <Pagination   sx={{display:"flex", justifyContent:"center" }}
-            color="primary"
+      <Pagination   sx={{display:"flex", justifyContent:"center", paddingY:4, hideNextButton:true,
+      "& .MuiPaginationItem-root.Mui-selected": { backgroundColor:"white", color:"black", fontWeight:"bold", fontSize:27},
+      "& .MuiPaginationItem-root.Mui-selected:hover": { backgroundColor:"white", color:"black", fontWeight:"bold", fontSize:27},
+      "& .MuiButtonBase-root": { backgroundColor:"white", color:"gray", fontSize:27},
+      "& .MuiPaginationItem-icon": { backgroundColor:"white", color:"black", fontWeight:"bold", fontSize:27},
+      "& .MuiPaginationItem-root.Mui-disabled": { display:"none"},
+    }}
+            
             count={count}
-            size="large"
+            size="medium"
             page={page}
             onChange={handleChange}
-    
+
     />
       </Stack>
       

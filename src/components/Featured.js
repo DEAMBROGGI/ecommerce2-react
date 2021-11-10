@@ -6,9 +6,6 @@ import "../styles/App.css"
 import Grid from '@mui/material/Grid';
 import { Button} from '@mui/material';
 import ImageListItem from '@mui/material/ImageListItem';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
 import {actionTypes} from '../reducer'
 
 export default function Featured ({product:{
@@ -30,9 +27,6 @@ export default function Featured ({product:{
     }) {
 
   const [{items},dispatch] = useStateValue();
-  
-  const [expanded, setExpanded] = React.useState(false);
-
   const bestRating = items.sort(function (a, b){
   return (b.rating - a.rating)
   })
@@ -66,40 +60,42 @@ export default function Featured ({product:{
   }
  return (
 
-     <Box >
+     <Box padding={1}>
         
       <Box  sx={{ flexGrow: 1}}>
         <Grid container xs={12}>
-        <Grid item xs={12} lg={8}>
-          <Typography variant="h5" padding={2} sx={{ fontFamily:"Impact"}}>
+        <Grid item xs={12} lg={10}>
+          <Typography variant="h4" fontWeight= 'bold'  >
               {name}
           </Typography>
           </Grid>
-          <Grid item xs={"none"} lg={4} color="black">
+          <Grid item xs={"none"} lg={2} color="black">
           <Button
             onClick={addToBasket}
             variant="contained" color="info" 
             sx={{display: {xs:"none", lg:"block" }, 
-                marginTop:"1rem",
                 fontSize:"large", 
                 width:"100%",
                 color:"white",
-                backgroundColor:"black"}}
+                backgroundColor:"black",
+                heigth:"47px",
+                borderRadius:0}}
           >
             ADD TO CART
           </Button>
           </Grid>
           </Grid> 
       </Box>
-      <Box  sx={{width:"100%", justifyContent:"center",margin:"auto", paddingTop:2, paddingBottom:2}} >
+      <Box  sx={{width:"100%", justifyContent:"center",margin:"auto", paddingTop:2, paddingBottom:2, heigth:"553px"}} >
       <ImageListItem
       sx={{display:"flex" }}>
         <img
         src= {img}
         alt={name}
         />
-           { featured && <Box position="absolute" bottom="-1px" left="-1px">
-              <Typography fontSize="4vw"  sx={{backgroundColor:"white", padding:2,fontFamily:"Impact"}}> Photo of the day </Typography>
+           { featured && <Box position="absolute" bottom="-1px" left="-1px" width="272px" heigth="67px"
+           display="flex" justifiyContent="center">
+              <Typography fontSize="20px"  sx={{backgroundColor:"white", padding:4,fontWeight: 'bold'}}> Photo of the day </Typography>
             </Box>}
 
       </ImageListItem>
@@ -121,38 +117,32 @@ export default function Featured ({product:{
           </Button>
           </Grid>
         <Grid container xs={12} sx={{ flexGrow: 1, paddingY:2, alignItems:"baseline"}}>
-        <Grid item xs={12}  lg={7}> 
-        <Accordion
-        sx={{boxShadow:"none"}}>
-        <AccordionSummary
-         
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-        >
-          <Typography variant="h5" sx={{ fontFamily:"Impact"}}>About the {name}</Typography>
-        </AccordionSummary>
-          <AccordionDetails>
-            <Typography>
+        <Grid item xs={12} md={6} lg={6}> 
+     
+          <Typography variant="h5" sx={{ padding:2 , fontWeight: 'bold'}}>About the {name}</Typography>
+       
+            <Typography color="text.secondary" paddingLeft={2} >
               {details}
             </Typography>
-          </AccordionDetails>
-      </Accordion>
+       
       </Grid>
-      <Grid container item xs={12}  lg={5} display="flex">
+      <Grid md={1} lg={2} ></Grid>
+      <Grid container item xs={12}   md={5} lg={4} display="flex">
         <Grid item xs={12}>
-      <Typography variant="h5" sx={{paddingX:"16px",fontFamily:"Impact", 
+      <Typography variant="h5" sx={{paddingX:"16px",fontWeight: 'bold',
         textAlign:{
           lg:'right',
-          xs:'left'
+          xs:'left',
+          md:"left"
           }}}> People also buy</Typography>  
       </Grid >  
-      <Grid  item xs={12} display="flex" > 
+      <Grid  item xs={12}  display="flex" spacing={4} paddingY={2}> 
       {bestRank.map((product) => (
-        <Grid xs={4} spacing={1} >
+        <Grid xs={4}  >
           <Box>
         <img
         width="100%"
-        height="100%"
+        heigth="100%"
         src= {product}
         />
           {product.img}
@@ -161,15 +151,17 @@ export default function Featured ({product:{
       ))}
       </Grid>
         <Grid item xs={12} display="block" >
-        <Typography variant="h6" sx={{paddingX:"16px",fontFamily:"Impact", 
+        <Typography variant="h6" sx={{paddingX:"16px",fontWeight: 'bold', 
         textAlign:{
           lg:'right',
-          xs:'left'
+          xs:'left',
+          md:"left"
           }}}> Details</Typography> 
-          <Typography  sx={{paddingX:"16px", 
+          <Typography  sx={{padding:"16px", color:"text.secondary" ,
         textAlign:{
           lg:'right',
-          xs:'left'
+          xs:'left',
+          md:"left"
           }}}> Size {width} X {height}</Typography> 
 
         </Grid>

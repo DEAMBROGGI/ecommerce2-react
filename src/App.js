@@ -44,6 +44,8 @@ async function getProducts() {
     categoryFilter:selectCat,
     priceSelected:initialPrice,
     filterProducts:productsList,
+    fullCat:selectCat,
+    fullPrice:initialPrice,
   })
   
 }

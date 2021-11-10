@@ -7,12 +7,11 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import Radio from '@mui/material/Radio';
+import Products from '../Products';
 
 const priceRange =[
-                {id:1,
-                name:"All",
-                price:[-Infinity,Infinity]},
-
+               
                 {id:2,
                 name:"Lower than 20",
                 price: [0,20]},  
@@ -28,63 +27,79 @@ const priceRange =[
                 {id:5,
                 name:"More than $200",
                 price:[200.1,Infinity]},
-
-                
-                    
+           
 ]
  
   export default function Price  () {
+    let anchoVentana = window.innerWidth
     const [{items},dispatch] = useStateValue(); 
     const prices = priceRange.map((product) => (product));
 
   const [checked, setChecked] = useState([]); 
+  const [checkedItem, setCheckedItem] = useState([])
 
-  const handleToggle = c => () => {
-    // return the first index or -1
+  const handleToggle = (c,n) => () => {
+    
     const clickedCategory = checked.indexOf(c);
     const all = [...checked];
+    let item ={...checkedItem};
 
     if (clickedCategory === -1) {
+      all.splice(clickedCategory, 1);
+      
       all.push(c);
+      item=n;
     } else {
       all.splice(clickedCategory, 1);
+      
     }
     
     setChecked(all);
+    setCheckedItem(item)
 
+    if(anchoVentana>900){
     dispatch({
       type: actionTypes.PRICE_FILTER,
       priceSelected:all,
     })
-  
+    }
+    if(anchoVentana<900){
+      dispatch({
+        type: actionTypes.PRICE_FILTER_SMALL,
+        priceSelectedSmall:all,
+      })
+    }
   };
-  
+ 
   return (
       
     <div>
       <FormControl component="fieldset">
         <FormLabel  sx={{fontSize:25, fontWeight: 'bolder', color:"black"}} component="legend">Price</FormLabel>
-        <FormGroup>
-          {prices.map((product)=>(
-          <FormControlLabel
-         
-            control={
+       
+          {prices.map((product,index)=>(
+         <form className="form" >
 
-              <Checkbox
-              fontSize="3rem"
-              sx={{ '& .MuiSvgIcon-root': { fontSize:25 }, padding:3 }}
-          
-                key = {product.id}
+              <input type="checkbox" className="checkBox"
+     
+                className="checkbox"
+                key = {index}
+                id={index}
                 value={product}
-                onChange={handleToggle(product.price)}
+                onChange={handleToggle(product.price, product.id)}
                 name={product.name}
+                checked={checkedItem === product.id}
+               
+               
               />
-            }
-            label={<span style={{ fontSize:25}}>{product.name}</span>}
+              
+            <label className="label-checkbox" for={index}> {product.name}</label><br></br>
             
-          />
+            </form>
+            
+         
           ))}
-        </FormGroup>
+      
         
       </FormControl>
     </div>

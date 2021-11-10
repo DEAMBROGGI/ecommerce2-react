@@ -1,92 +1,72 @@
 import * as React from 'react';
 import {useStateValue} from '../../StateProvider';
 import {actionTypes} from '../../reducer'
-import { useState, useEffect } from 'react';
-import Checkbox from '@mui/material/Checkbox';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
+import { useState } from 'react';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import "../../styles/index.css"
  
   export default function Category  () {
+  let anchoVentana = window.innerWidth  
   const [{items, categoryFilter},dispatch] = useStateValue();   
   const category = items?.map((product) => (product.category));
   const selectCat = [...new Set(category)]; 
-
   const [checked, setChecked] = useState([]); 
-
-  const handleToggle = c => () => {
+   
+  const handleToggle = (c ) => (event) => {
     // return the first index or -1
     const clickedCategory = checked.indexOf(c);
     const all = [...checked];
-
+    
     if (clickedCategory === -1) {
       all.push(c);
+    
     } else {
       all.splice(clickedCategory, 1);
     }
    
     setChecked(all);
-   
-    dispatch({
-      type: actionTypes.CATEGORY_FILTER,
-      categoryFilter:all,
-    })
-  };
-  function all(e){
-   
-   
-    dispatch({
-      type: actionTypes.CATEGORY_FILTER,
-      categoryFilter:selectCat,
-    })
-
-  }
-
   
+    if(anchoVentana>900){
+      dispatch({
+        type: actionTypes.CATEGORY_FILTER,
+        categoryFilter:all,
+      })
+    }
+      if(anchoVentana<900){
+      dispatch({
+        type: actionTypes.CATEGORY_FILTER_SMALL,
+        categoryFilterSmall:all,
+      })
+    }
+  
+  };
+
   return (
     <div>
       <FormControl component="fieldset">
         <FormLabel  sx={{fontSize:25, fontWeight: 'bolder', color:"black"}} component="legend">Category</FormLabel>
-        <FormGroup>
+ 
+          {selectCat.map((product,index)=>(
+          <form className="form" >
 
-          <FormControlLabel
-          control={
-              <Checkbox
-                sx={{ '& .MuiSvgIcon-root': { fontSize:25 }, padding:3 }}
-                value={selectCat}
-                onChange={all}
-                name="All"
-                />
-
-
-          }
-          label={<span style={{ fontSize:25}}>ALL</span>}
-          />
-          {selectCat.map((product, index)=>(
-          <FormControlLabel
-         
-            control={
-              
-              <Checkbox
-              
-              
-              sx={{ '& .MuiSvgIcon-root': { fontSize:25 }, padding:3 }}
+              <input type="checkbox" className="checkBox"
+     
                 className="checkbox"
                 key = {index}
-                
+                id={index}
                 value={product}
-                onChange={handleToggle(product)}
+                onChange={handleToggle(product,index)}
                 name={product}
+                checked={checked[product]}
+                
               />
-            }
-            label={<span style={{ fontSize:25}}>{product}</span>}
             
-          />
+            <label className="label-checkbox" for={index}> {product}</label><br></br>
+            
+            </form>
           ))}
-          
-        </FormGroup>
-        
+
       </FormControl>
     </div>
   );

@@ -48,14 +48,14 @@ const removeItem = ()=> dispatch({
 
   return (
 
-   <Card sx={{ maxWidth: 345,  margin:2, boxShadow: 3 }}>
+   <Card sx={{ maxWidth: 345,  marginX:2, boxShadow:0}}>
       
-        <Grid xs={12}  display="flex" justifyContent="center" padding={1} borderBottom="3px solid grey">
+        <Grid xs={12}  display="flex" justifyContent="center" paddingY={2} borderBottom="3px solid grey">
       
-        <Grid xs={8} display="flex" justifyContent="center" alignItems="center" >
-        <CardContent>
+        <Grid xs={7} display="flex" justifyContent="flex-start" alignItems="center" height="86px" >
+        <CardContent  padding={0}>
 
-          <Typography gutterBottom variant="h4" component="div">
+          <Typography gutterBottom variant="h5" component="div" fontWeight= 'bold' >
           {name}
           </Typography>
           <Typography variant="h5" color="text.secondary">
@@ -64,16 +64,17 @@ const removeItem = ()=> dispatch({
         </CardContent>
         </Grid>
 
-        <Grid xs={4}>
+        <Grid xs={5}>
         <CardMedia
           component="img"
-          height="140"
+          height="86px"
+          width="149px"
           image={img}
           alt="green iguana"
         />
         </Grid>
       </Grid>
-      <Grid xs={12} display="flex" justifyContent="center"  margin={1} >
+      <Grid xs={12} display="flex" justifyContent="center"  marginY={2} >
      
         <Button variant="outlined" color="inherit" xs={12} 
                                           sx={{ 
@@ -82,6 +83,8 @@ const removeItem = ()=> dispatch({
                                           display:"flex", 
                                           width:"100%", 
                                           size:"large",
+                                          borderRadius:0,
+                                          border:"3px solid"
                                            }} 
                   onClick={removeItem}>
          Clear

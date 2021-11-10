@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Featured from "./Featured";
@@ -10,7 +10,7 @@ import FormControl from '@mui/material/FormControl';
 import NativeSelect from '@mui/material/NativeSelect';
 import {actionTypes} from '../reducer'
 import Category from './FilterForm/Category';
-import TuneIcon from '@mui/icons-material/Tune';
+import FilterSmall from '../components/FilterForm/FilterSmall';
 import {useStateValue} from '../StateProvider';
 
 export default function Products  ({products}){
@@ -51,26 +51,11 @@ dispatch({
   orderBy:shortBy,
 })  
 }
-const [display,setDisplay] = useState({xs:"none", sm:"none", md:"block", lg:"block"});
-
-const styles = {
-  display:display,
-};
-function displayFilter(){
-if(display.xs ==="none"){
-setDisplay({xs:"block",sm:"flex", md:"block", lg:"block"})
-}
-if(display.xs ==="block"){
-setDisplay({xs:"none", sm:"none", md:"block", lg:"block"})
-}
-
-}
-
 
   return (
 
 <Box spacing={2} sx={{paddingX:3,
-                      marginTop:"3%", 
+                      marginTop:"4%", 
                       position:"retative",
                       display:"block",
                       justifyContent:"center"
@@ -87,16 +72,16 @@ setDisplay({xs:"none", sm:"none", md:"block", lg:"block"})
                   ))
                   }
                 <Grid container xs={12}  sx={{justifyContent:"space-between"}}>
-                  <Grid item xs={9} sm={6} md={6} lg={6} sx={{ width:"100%", flexGrow: 1, alignItems:"center",display: "inline-flex", padding:1}}>
+                  <Grid item xs={11} sm={6} md={6} lg={6} sx={{ width:"100%", flexGrow: 1, alignItems:"center",display: "inline-flex", padding:1}}>
                     
-                    <Typography sx={{fontSize:{xs:12,sm:17},  fontWeight: 'bolder', color:"black", paddingRight:1}}>Photography / </Typography>
-                    <Typography sx={{fontSize:{xs:12,sm:17},  fontWeight: 'bolder', color:"text.disabled"}}>  Premium Photos</Typography>
+                    <Typography sx={{fontSize:{xs:12,sm:20, lg:25},  fontWeight: 'bolder', color:"black", paddingRight:1}}>Photography / </Typography>
+                    <Typography sx={{fontSize:{xs:12,sm:20, lg:25},  fontWeight: 'bolder', color:"text.disabled"}}>  Premium Photos</Typography>
 
                   </Grid>
 
 {/*.....................DISPLAY ICON FILTER.............................................*/}
                
-                  <Grid item  >  
+                  <Grid item xs={1} sm={4}  md={4}>  
                     <Box
                      sx={{
                       display:{ xs:"flex", sm:"flex", md:"none", lg:"none", color:"black"},
@@ -104,20 +89,20 @@ setDisplay({xs:"none", sm:"none", md:"block", lg:"block"})
                       justifyContent:"flex-end", 
                       heigth:"30px", width:"100%",  
                       flexGrow: 1,  
-                      padding:1}}>
-   
+                      }}>
+                   
                     <Button
                      sx={{ minWidth:0}}>
-                    <TuneIcon onClick={displayFilter} size="20px"  sx={{ color:"black", transform:"rotate(90deg)"}}/> 
+                    <FilterSmall/> 
                     </Button>
                   
                     </Box>
-                  </Grid>
+                 
                 
 {/*.....................DISPLAY SELECT CATEGORY.............................................*/}
 
 
-                  <Grid item  >  
+                   
                     <Box
                      sx={{
                       display:{ xs:"none", sm:"none", md:"flex", lg:"flex"},
@@ -152,6 +137,7 @@ setDisplay({xs:"none", sm:"none", md:"block", lg:"block"})
                           >
                             <option value="price">Price</option>
                             <option value="rating">Rating</option>
+                            <option value="name">Name</option>
                             
                           </NativeSelect>
                         </FormControl>
@@ -164,18 +150,18 @@ setDisplay({xs:"none", sm:"none", md:"block", lg:"block"})
 
  {/*.....................DISPLAY CHECKBOX FILTERS.............................................*/}           
 
-            <Grid  sm={12} md={4} lg={3} >
+            <Grid   sm={12} md={4} lg={3} >
             <Box sx={{padingTop:"0px", paddingBottom:"0px"}}>
 
             <Box sx={{paddingBottom:"0px"}}>
             <Box sx={{width:"100%",
-                      ...styles,
+                      display:{xs:"none", sm:"none", md:"block", lg:"block" },
                       flexDirection:"row", 
                       justifyContent:"center",
                       marginTop:1,     
                       }}>
 
-                <Grid xs={12} sm={6} md={12} lg={12} sx={{borderBottom:"5px solid grey", padding:1, width:"80%", marginTop:1}}>
+                <Grid xs={12} sm={6} md={12} lg={12} sx={{borderBottom:"5px solid grey", padding:1, paddingTop:5, width:"80%", marginTop:1}}>
                 <Category/>
                 </Grid>
 

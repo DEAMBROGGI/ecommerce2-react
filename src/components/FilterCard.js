@@ -18,6 +18,7 @@ import {actionTypes} from '../reducer'
 import Box from '@mui/material/Box';
 import ImageListItem from '@mui/material/ImageListItem';
 import { Button} from '@mui/material';
+import Grid from '@mui/material/Grid';
 
 
 
@@ -97,31 +98,15 @@ width,
   };
   return (
 
-    
-    <Box sx={{ width:"100%"}} 
+   
+    <Box sx={{ width:"100%", }} 
     onMouseEnter={() => setDisplayButton("block")}
     onMouseLeave={() => setDisplayButton("none")}>
-
-      <Box display="flex" justifyContent="center" backgroundColor="text.disabled">
-     <ImageListItem
-      style={{height:"300px"}} >
-        <img
-        src= {img}
-        alt={name}
-        height="300px"
-        />
-        { featured && <Box position="absolute" bottom="0px" left="0px">
-                      <Typography   sx={{backgroundColor:"white", fontSize:15, padding:2,fontFamily:"Impact"}}> Photo of the day </Typography>
-                      </Box>}
-        { bestseller && <Box position="absolute" top="0px" left="0px">
-                        <Typography   sx={{backgroundColor:"white", fontSize:15, padding:2,fontFamily:"Impact"}}> Bestseller </Typography>
-                      </Box>}    
-              
-
-     </ImageListItem>
-     </Box>
-      <Box sx={{ display:"static", heigth:"300px" }}>
-        <Button
+ 
+      <Box display="flex" position="relative" justifyContent="center" width="100%" >
+        <Box  position="absolute" bottom="0px" left="0px" zIndex={100} width="100%">
+      <Button
+    
           style={styleButton}
           variant="contained"  
           onClick={addToBasket}
@@ -135,6 +120,30 @@ width,
         >
           ADD TO CART
         </Button>
+        </Box>
+     <ImageListItem 
+      style={{height:"400px"}} >
+        <img
+        src= {img}
+        alt={name}
+        height="400px"
+
+        />
+        { featured && <Box position="absolute" bottom="0px" left="0px">
+                      <Typography   sx={{backgroundColor:"white", fontSize:15, padding:2}}> Photo of the day </Typography>
+                      </Box>}
+        { bestseller && <Box position="absolute" top="0px" left="0px">
+                        <Typography   sx={{backgroundColor:"white", fontSize:15, padding:2}}> Bestseller </Typography>
+                      </Box>}    
+              
+       
+     </ImageListItem>
+     
+     </Box>
+    
+       
+      <Box sx={{ display:"static", heigth:"300px" }}>
+        
         <Typography  variant="h6" >{category}</Typography>
         <Typography  variant="h4" >{name}</Typography>
         <Typography
@@ -145,8 +154,8 @@ width,
           {accounting.formatMoney(price, currency)}
           </Typography>
       </Box>
-
+ 
     </Box>
-    
+
   );
 }

@@ -4,11 +4,15 @@ export const initialState = {
     product:[],
     items:[],
     categoryFilter:[],
+    categoryFilterSmall:[],
     priceSelected:[],
+    priceSelectedSmall:[],
     orderBy:[],
     ratingFilter:5,
     filterProducts:[],
-    verBuyCart:false
+    verBuyCart:false,
+    fullCat:[],
+    fullPrice:[],
 }
 
 export const actionTypes = {
@@ -18,11 +22,12 @@ export const actionTypes = {
     SET_USER:"SET_USER",
     LOAD_PRODUCTS:"LOAD_PRODUCTS",
     CATEGORY_FILTER:"CATEGORY_FILTER",
+    CATEGORY_FILTER_SMALL:"CATEGORY_FILTER_SMALL",
     RATING_FILTER:"RATING_FILTER",
     ORDERBY:"ORDERBY",
     PRICE_FILTER:"PRICE_FILTER",
+    PRICE_FILTER_SMALL:"PRICE_FILTER_SMALL",
     FILTER_PRODUCTS:"FILTER_PRODUCTS",
-    
     LOAD_BUYPAGE:"LOAD_BUYPAGE"
 }
 
@@ -78,19 +83,24 @@ switch(action.type){
                 categoryFilter:action.categoryFilter,
                 priceSelected:action.priceSelected,
                 filterProducts:action.filterProducts,
+                fullCat:action.fullCat,
+                fullPrice:action.fullPrice
             }
         case "CATEGORY_FILTER":
             return{
                 ...state,
-                categoryFilter:action.categoryFilter,
-                
+                categoryFilter:action.categoryFilter,       
             }
+        case "CATEGORY_FILTER_SMALL":
+            return{
+                ...state,
+                categoryFilterSmall:action.categoryFilterSmall,       
+                }
         case "RATING_FILTER":
           
             return{
                  ...state,
                 ratingFilter:action.ratingFilter,
-                
 
                 }
         case "ORDERBY":
@@ -103,7 +113,11 @@ switch(action.type){
                   ...state,
                   priceSelected:action.priceSelected,
                   }
-                  
+        case "PRICE_FILTER_SMALL":
+            return{
+                    ...state,
+                    priceSelectedSmall:action.priceSelectedSmall,
+                    }         
         case "FILTER_PRODUCTS":
             return{
                 ...state,
