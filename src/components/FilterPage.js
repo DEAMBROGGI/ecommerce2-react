@@ -6,9 +6,10 @@ import Stack from '@mui/material/Stack';
 import usePaginationFilter from "./PaginationFilter";
 import { useState} from 'react';
 import Box from '@mui/material/Box';
+import {useStateValue} from '../StateProvider';
 
  const FilterPage = ({result})=>{
-
+    const [{currentPage},dispatch] = useStateValue();
     let [page, setPage] = useState(1);
     const PER_PAGE = 6;
     const count = Math.ceil(result?.length / PER_PAGE);
@@ -55,9 +56,9 @@ import Box from '@mui/material/Box';
             
             count={count}
             size="medium"
-            page={page}
+            page={currentPage}
             onChange={handleChange}
-
+            
     />
       </Stack>
       

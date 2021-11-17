@@ -13,6 +13,8 @@ export const initialState = {
     verBuyCart:false,
     fullCat:[],
     fullPrice:[],
+    currentPage:1,
+    priceCheked:0
 }
 
 export const actionTypes = {
@@ -28,7 +30,9 @@ export const actionTypes = {
     PRICE_FILTER:"PRICE_FILTER",
     PRICE_FILTER_SMALL:"PRICE_FILTER_SMALL",
     FILTER_PRODUCTS:"FILTER_PRODUCTS",
-    LOAD_BUYPAGE:"LOAD_BUYPAGE"
+    LOAD_BUYPAGE:"LOAD_BUYPAGE",
+    CURRENT_PAGE:"CURRENT_PAGE",
+    PRICE_CHECKED:"PRICE_CHECKED"
 }
 
 export const getTotal =(basket) => {
@@ -51,6 +55,16 @@ const reducer =(state, action ) =>{
         
 
 switch(action.type){
+    case "PRICE_CHECKED":
+        return{
+            ...state,
+            priceCheked:action.priceCheked
+        }
+    case "CURRENT_PAGE":
+        return{
+            ...state,
+            currentPage:action.currentPage
+        }
     case "ADD_TO_BASKET":
         return{
             ...state,

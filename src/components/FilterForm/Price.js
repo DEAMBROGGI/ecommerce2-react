@@ -31,8 +31,8 @@ const priceRange =[
 ]
  
   export default function Price  () {
-    let anchoVentana = window.innerWidth
-    const [{items},dispatch] = useStateValue(); 
+   
+    const [{items, priceCheked},dispatch] = useStateValue(); 
     const prices = priceRange.map((product) => (product));
 
   const [checked, setChecked] = useState([]); 
@@ -56,19 +56,29 @@ const priceRange =[
     
     setChecked(all);
     setCheckedItem(item)
+    dispatch({
+      type: actionTypes.CURRENT_PAGE,
+      currentPage:1,
+    })    
+    
 
-    if(anchoVentana>900){
+    if(window.innerWidth>900){
     dispatch({
       type: actionTypes.PRICE_FILTER,
       priceSelected:all,
+      
     })
+    
     }
-    if(anchoVentana<900){
+    if(window.innerWidth<900){
       dispatch({
         type: actionTypes.PRICE_FILTER_SMALL,
         priceSelectedSmall:all,
       })
+
     }
+    
+    console.log(item)
   };
  
   return (
@@ -86,7 +96,7 @@ const priceRange =[
                 key = {index}
                 id={index}
                 value={product}
-                onChange={handleToggle(product.price, product.id)}
+                onChange={handleToggle(product.price, product.id) }
                 name={product.name}
                 checked={checkedItem === product.id}
                

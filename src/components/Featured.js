@@ -95,7 +95,7 @@ export default function Featured ({product:{
         />
            { featured && <Box position="absolute" bottom="-1px" left="-1px" width="272px" heigth="67px"
            display="flex" justifiyContent="center">
-              <Typography fontSize="20px"  sx={{backgroundColor:"white", padding:4,fontWeight: 'bold'}}> Photo of the day </Typography>
+              <Typography fontSize="20px"  sx={{backgroundColor:"white", padding:"3vw",fontWeight: 'bold'}}> Photo of the day </Typography>
             </Box>}
 
       </ImageListItem>

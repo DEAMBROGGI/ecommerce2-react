@@ -1,4 +1,3 @@
-
 import './styles/App.css';
 import './styles/index.css';
 import Navbar from './components/Navbar';
@@ -13,7 +12,7 @@ import { actionTypes } from './reducer';
 import {useStateValue} from './StateProvider';
 
 function App() {
-  
+
   const [{user},dispatch] = useStateValue();
   const [products, setProducts] = useState([]);
   
@@ -49,7 +48,7 @@ async function getProducts() {
   })
   
 }
- 
+
   useEffect(() => {
     
     getProducts();
@@ -63,6 +62,7 @@ async function getProducts() {
         })
       } 
     });
+
  }, []);
 
   return (

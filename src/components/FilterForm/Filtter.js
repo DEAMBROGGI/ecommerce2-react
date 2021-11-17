@@ -2,10 +2,17 @@ import Grid from '@mui/material/Grid';
 import {useStateValue} from '../../StateProvider';
 import React from 'react';
 import FilterPage from '../FilterPage';
+import {actionTypes} from '../../reducer'
 
 export default function Filtter() {
+  /*let dataChecked =  document.querySelectorAll('input[type=checkbox]')
+    for (let i = 0; i < dataChecked.length; i++) {
 
-const [{items,priceSelected,
+   let checkboxList = {name:dataChecked[i].name, cheked:dataChecked[i].checked}
+      
+    }
+*/
+const [{items,priceSelected, currentPage,
 orderBy,categoryFilter, filterProducts}, dispatch] =useStateValue([]);
 
 let dataFilter = [];
@@ -49,7 +56,8 @@ const data = categoriasAFiltrar?.map(category => test.filter(item =>
 item.price >= min && item.price <= max &&
 item.category===  category)).flat()
 
-let result = []
+let result = [];
+
 //Buscar duplicados por ID
 const busqueda = data?.reduce((acc, product) => {
   acc[product.id] = ++acc[product.id] || 0;
@@ -65,8 +73,10 @@ const duplicados =  data?.filter( (product) => {
 //Eliminar los ids repetidos y generar RESULTADO con condicional else para asegurar
 //que la pagina no quede en blanco
 result =  duplicados.filter((item,index)=>{
-return duplicados.indexOf(item) === index;
+
   
+return duplicados.indexOf(item) === index;
+
 })
 result.sort( (a, b) => (a.name > b.name) ? 1 : -1)
 
@@ -109,11 +119,12 @@ result.sort( (a, b) => (a.name > b.name) ? 1 : -1)
           break;                  
     default: return "";
       }
+      
 
 return(
 
             <Grid container  xs={12}  width="100%" > 
-               <FilterPage result={result}/>
+               <FilterPage  result={result}/>
             </Grid> 
 
 );

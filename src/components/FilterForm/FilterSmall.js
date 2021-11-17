@@ -13,6 +13,7 @@ import {actionTypes} from '../../reducer'
 
 export default function FilterSmall() {
 
+  
     const [{fullCat, fullPrice ,priceSelectedSmall, categoryFilterSmall},dispatch] = useStateValue();
 
     const inputRef = useRef();
@@ -23,10 +24,20 @@ export default function FilterSmall() {
       setAnchorEl(event.currentTarget);
       let coords = inputRef.current.getBoundingClientRect()
       inputRef.current.scrollIntoView()
+  
       
     };
  
     const handleClose = () => {
+      dispatch({
+        type: actionTypes.CATEGORY_FILTER_SMALL,
+        categoryFilterSmall:fullCat,
+      })
+      dispatch({
+        type: actionTypes.PRICE_FILTER_SMALL,
+        priceSelectedSmall:fullPrice,
+      })
+      
       setAnchorEl(null);
     };
   
@@ -37,6 +48,7 @@ export default function FilterSmall() {
     let precioSeleccionado=priceSelectedSmall
 
     function apply(e){
+
         dispatch({
             type: actionTypes.CATEGORY_FILTER,
             categoryFilter:categoriaSeleccionada,
@@ -45,6 +57,7 @@ export default function FilterSmall() {
             type: actionTypes.PRICE_FILTER,
             priceSelected:precioSeleccionado,
           })
+          
           inputRef.current.scrollIntoView()
     }
     function clear(e){
@@ -57,7 +70,7 @@ export default function FilterSmall() {
     type: actionTypes.PRICE_FILTER,
     priceSelected:fullPrice,
   })
-
+  
   let data =  document.querySelectorAll('input[type=checkbox]')
       for (let i = 0; i < data.length; i++) {
       data[i].checked = false
@@ -78,6 +91,7 @@ export default function FilterSmall() {
      
 <Popover
         sx={{"& .MuiPaper-root":{overflowY:"clip"}}}
+        
         height="500px"
         width="100%"
         id={id}
@@ -105,7 +119,7 @@ export default function FilterSmall() {
             </Button>
             </Grid>
     </Grid>
-    <Box display="flex" position="relative" justifyContent="center" width="100%" >
+    <Box display="flex" position="relative" justifyContent="center" width="100%" maxHeight="84vh">
         <Box  position="absolute" bottom="0px" left="0px" zIndex={1000} width="100%" display="flex" justifyContent="center" alignItems="center"   
         sx ={{backgroundColor:"white", height:"104px",borderTop:"5px solid grey" }} >
             <Grid container xs={12} sm={12} display="flex" justifyContent="center" alignItems="center" >
@@ -166,7 +180,7 @@ export default function FilterSmall() {
                 <Category />
                 </Grid>
 
-                <Grid item xs={12} sm={12} sx={{padding:1, paddingBottom:13}}>
+                <Grid item xs={12} sm={12} sx={{padding:1, paddingBottom:13, marginBottom:11}}>
 
                   <Price sx={{ width:"100%",                
                                   

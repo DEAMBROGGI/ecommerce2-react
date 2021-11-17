@@ -7,7 +7,7 @@ import FormLabel from '@mui/material/FormLabel';
 import "../../styles/index.css"
  
   export default function Category  () {
-  let anchoVentana = window.innerWidth  
+  
   const [{items, categoryFilter},dispatch] = useStateValue();   
   const category = items?.map((product) => (product.category));
   const selectCat = [...new Set(category)]; 
@@ -26,20 +26,26 @@ import "../../styles/index.css"
     }
    
     setChecked(all);
+
+    dispatch({
+      type: actionTypes.CURRENT_PAGE,
+      currentPage:1,
+    })    
   
-    if(anchoVentana>900){
+  
+    if(window.innerWidth>900){
       dispatch({
         type: actionTypes.CATEGORY_FILTER,
         categoryFilter:all,
       })
     }
-      if(anchoVentana<900){
+      if(window.innerWidth<900){
       dispatch({
         type: actionTypes.CATEGORY_FILTER_SMALL,
         categoryFilterSmall:all,
       })
     }
-  
+    
   };
 
   return (
